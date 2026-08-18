@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components -- context module exports provider + hook */
 import { createContext, useContext, useState, type ReactNode } from 'react'
 
 export type PanelType = 'settings' | 'notifications' | null

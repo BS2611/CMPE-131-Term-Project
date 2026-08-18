@@ -309,7 +309,6 @@ function ActivityTab() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    setLoading(true)
     apiClient.get<ActivityEntry[]>('/admin/activity')
       .then(res => { setEntries(res.data); setLoading(false) })
       .catch(() => setLoading(false))
@@ -397,8 +396,12 @@ export function AdminPage() {
   useEffect(() => {
     if (!isTO) return
     let cancelled = false
-    setLoadingUsers(true)
-    setFetchError(null)
+    queueMicrotask(() => {
+      if (!cancelled) {
+        setLoadingUsers(true)
+        setFetchError(null)
+      }
+    })
     apiClient.get<BackendUser[]>('/admin/users')
       .then(res => {
         if (!cancelled) {

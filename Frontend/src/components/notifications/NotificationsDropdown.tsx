@@ -82,7 +82,10 @@ export function NotificationsDropdown() {
   }
 
   // Close popup whenever we navigate to the notifications page
-  useEffect(() => { if (onPage) setOpen(false) }, [onPage])
+  useEffect(() => {
+    if (!onPage) return
+    queueMicrotask(() => setOpen(false))
+  }, [onPage])
 
   // Close on outside click or ESC
   useEffect(() => {

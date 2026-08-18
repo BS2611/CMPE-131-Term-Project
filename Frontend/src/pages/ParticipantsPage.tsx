@@ -110,7 +110,7 @@ function StatCard({
 export function ParticipantsPage() {
   const { tournaments, participants, getTournament, addParticipant, removeParticipant, loading } = useAppData()
   const { user } = useAuth()
-  const canDelete = user?.role === 'TO' || user?.role === 'VIEWER'
+  const canDelete = user?.role === 'TO'
 
   const [filterTournament, setFilterTournament] = useState('ALL')
   const [filterStatus, setFilterStatus]         = useState<StatusFilter>('all')
@@ -161,7 +161,8 @@ export function ParticipantsPage() {
   const toggleOne = (id: string) => {
     setSelected(prev => {
       const next = new Set(prev)
-      next.has(id) ? next.delete(id) : next.add(id)
+      if (next.has(id)) next.delete(id)
+      else next.add(id)
       return next
     })
   }

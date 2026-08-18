@@ -1,9 +1,8 @@
-/** Demo accounts seeded by the Spring Boot DataLoader */
+/** Public demo account seeded by the Spring Boot DataLoader.
+ * Organizer demo credentials are intentionally not exposed in the frontend;
+ * users who know them can still type them manually on the demo form.
+ */
 export const MOCK_CREDENTIALS = {
-  organizer: {
-    username: 'organizer',
-    password: 'organizer123',
-  },
   viewer: {
     username: 'viewer',
     password: 'viewer123',

@@ -182,8 +182,8 @@ export function LoginPage() {
     else setError(res.message ?? 'Login failed.')
   }
 
-  const fillDemo = (role: 'organizer' | 'viewer') => {
-    const c = MOCK_CREDENTIALS[role]
+  const fillViewerDemo = () => {
+    const c = MOCK_CREDENTIALS.viewer
     setDemoUsername(c.username)
     setDemoPassword(c.password)
   }
@@ -383,32 +383,11 @@ export function LoginPage() {
                   Explore Tournament OS with a demo account — no Firebase needed.
                 </p>
 
-                <div className="flex flex-col gap-2.5 sm:flex-row">
+                <div className="flex flex-col gap-2.5">
                   <button
                     type="button"
-                    onClick={() => fillDemo('organizer')}
-                    className="group flex-1 rounded-xl border border-white/10 bg-white/[0.03] p-3.5 text-left transition-all duration-200 hover:-translate-y-[1px] hover:border-indigo-400/40 hover:bg-indigo-500/[0.06] active:scale-[0.99]"
-                  >
-                    <div className="flex items-center gap-2">
-                      <ShieldCheck className="h-3.5 w-3.5 text-indigo-300" />
-                      <span
-                        className="text-[10px] font-semibold uppercase text-indigo-200"
-                        style={{ letterSpacing: '0.12em' }}
-                      >
-                        Organizer
-                      </span>
-                    </div>
-                    <div className="mt-2 font-mono text-[11px] text-slate-400">
-                      {MOCK_CREDENTIALS.organizer.username}
-                    </div>
-                    <div className="font-mono text-[11px] text-slate-500">
-                      {MOCK_CREDENTIALS.organizer.password}
-                    </div>
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => fillDemo('viewer')}
-                    className="group flex-1 rounded-xl border border-white/10 bg-white/[0.03] p-3.5 text-left transition-all duration-200 hover:-translate-y-[1px] hover:border-violet-400/40 hover:bg-violet-500/[0.06] active:scale-[0.99]"
+                    onClick={fillViewerDemo}
+                    className="group rounded-xl border border-white/10 bg-white/[0.03] p-3.5 text-left transition-all duration-200 hover:-translate-y-[1px] hover:border-violet-400/40 hover:bg-violet-500/[0.06] active:scale-[0.99]"
                   >
                     <div className="flex items-center gap-2">
                       <Swords className="h-3.5 w-3.5 text-violet-300" />
@@ -416,10 +395,14 @@ export function LoginPage() {
                         className="text-[10px] font-semibold uppercase text-violet-200"
                         style={{ letterSpacing: '0.12em' }}
                       >
-                        Viewer
+                        Public viewer demo
                       </span>
                     </div>
-                    <div className="mt-2 font-mono text-[11px] text-slate-400">
+                    <p className="mt-2 text-xs leading-relaxed text-slate-500">
+                      Safe read-only access for demos. Organizer demo access is hidden;
+                      anyone who knows those credentials can still type them manually below.
+                    </p>
+                    <div className="mt-3 font-mono text-[11px] text-slate-400">
                       {MOCK_CREDENTIALS.viewer.username}
                     </div>
                     <div className="font-mono text-[11px] text-slate-500">

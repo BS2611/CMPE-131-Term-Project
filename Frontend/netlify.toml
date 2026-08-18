@@ -3,8 +3,14 @@
   command = "npm run build"
   publish = "dist"
 
-# ── SPA fallback — all routes served by index.html ────────────────────────────
+# — SPA fallback — all routes served by index.html
 [[redirects]]
   from   = "/*"
   to     = "/index.html"
   status = 200
+
+# — Allow Firebase Auth popup sign-in (overrides Netlify's default COOP)
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Cross-Origin-Opener-Policy = "same-origin-allow-popups"
